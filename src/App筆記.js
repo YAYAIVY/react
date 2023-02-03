@@ -25,7 +25,7 @@ export default App
 
 // ==== 最小的類別型元件
 
-// import React from 'react'
+// import React from 'react' 導入
 
 // class App extends React.Component {
 //   constructor() {
@@ -38,4 +38,4 @@ export default App
 //   }
 // }
 
-// export default App
+// export default App  導出
