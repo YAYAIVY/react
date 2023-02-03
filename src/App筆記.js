@@ -1,4 +1,5 @@
 //==== react/cra官方文件&教學寫法
+//預設的導入導出只有function/class可以用
 function App() {
   return <></>
 }
