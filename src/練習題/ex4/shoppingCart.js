@@ -14,7 +14,7 @@ const initialProducts = [
   {
     id: 2,
     name: '小老板海苔',
-    count: 2,
+    count: 5,
   },
 ]
 
