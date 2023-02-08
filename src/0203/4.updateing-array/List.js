@@ -1,22 +1,27 @@
 import { useState } from 'react'
 import './List.css'
+import { pureUnshift, purePush, searchFilter } from './api'
 
 const data = [
   {
     id: 1,
     text: 'a',
+    count: 0,
   },
   {
     id: 2,
     text: 'b',
+    count: 0,
   },
   {
     id: 3,
     text: 'c',
+    count: 0,
   },
   {
     id: 4,
     text: 'aa',
+    count: 0,
   },
 ]
 
@@ -24,12 +29,53 @@ function List() {
   // 與呈現有關必需先成為state
   const [items, setItems] = useState(data)
 
-  const myTable = (
+  // const myTable = (
+  //   <table>
+  //     <thead>
+  //       <tr>
+  //         <th>ID</th>
+  //         <th>Text</th>
+  //       </tr>
+  //     </thead>
+  //     <tbody>
+  //       {items.map((v, i) => {
+  //         return (
+  //           <tr key={v.id}>
+  //             <td>{v.id}</td>
+  //             <td>{v.text}</td>
+  //           </tr>
+  //         )
+  //       })}
+  //     </tbody>
+  //   </table>
+  // )
+
+  const plusCount = (arr, id) => {
+    return arr.map((v, i) => {
+      // 用條件判所是否id=傳入id值，是的話回傳拷貝+修改過的新物件
+      if (v.id === id) return { ...v, count: v.count + 1 }
+      // 不是的話，就拷貝後回傳新物件
+      else return { ...v }
+    })
+  }
+
+  //上面解說: 傳入一個陣列(裡面有包含例如以下的物件值)
+  // {
+  //   id: 1,
+  //   text: 'a',
+  //   count: 0,
+  // }
+  // 傳入一個id值，依id值作操作
+  // 返回一個新陣列，其中id相等傳入id值的物件值的，count屬性+1
+
+  const myTable2 = (
     <table>
       <thead>
         <tr>
           <th>ID</th>
           <th>Text</th>
+          <th>Count</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -38,6 +84,16 @@ function List() {
             <tr key={v.id}>
               <td>{v.id}</td>
               <td>{v.text}</td>
+              <td>{v.count}</td>
+              <td>
+                <button
+                  onClick={() => {
+                    setItems(plusCount(items, v.id))
+                  }}
+                >
+                  +
+                </button>
+              </td>
             </tr>
           )
         })}
@@ -68,7 +124,7 @@ function List() {
       <h1>物件陣列的各種操作</h1>
       <hr />
       <h2>資料表格</h2>
-      {myTable}
+      {myTable2}
       <hr />
       {note}
       <h2>基本操作</h2>
