@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react' //導入hook
 import './List.css'
 import { pureUnshift, purePush, searchFilter } from './api'
 

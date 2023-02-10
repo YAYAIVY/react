@@ -7,12 +7,12 @@
 //import List from "./0203/4.updateing-array/List"
 //import Menu from "./練習題/ex2/Menu"
 // import BookList from "./練習題/ex3/BookList"
-import ShoppingCart from "./練習題/ex4/shoppingCart"
-
+//import ShoppingCart from "./練習題/ex4/shoppingCart"
+import Counter from './練習題/exi/Counter'
 function App() {
   return (
     <>
-      <ShoppingCart />
+      <Counter />
     </>
   )
 }
