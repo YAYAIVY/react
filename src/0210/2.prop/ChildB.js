@@ -5,7 +5,7 @@ function ChildB(props) {
 
   const [cData, setCData] = useState('cb data')
 
-  // 方式一，利用useEffect送出資料給父母
+  // 方式一，利用useEffect(處理副作用)送出資料給父母
   // 類似onChange事件
   useEffect(() => {
     setDataFromChild(cData)
