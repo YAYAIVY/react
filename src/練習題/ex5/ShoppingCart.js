@@ -10,91 +10,85 @@
 // 分拆上下為兩個元件ShoppingList與Summary元件，與兩個檔案，然後組合在ShoppingCart，並保持原功能。 (註: ShoppingList為列表呈現區，Summary為最上方導覽列與總合/總價呈現區域，ShoppingCart變為兩者的父母元件)
 
 import { useState } from 'react'
+import Summary from './Summary'
+import ShoppingList from './ShoppingList'
 
 const initialProducts = [
   {
     id: 0,
     name: '小熊餅乾',
     count: 1,
+    price: 100,
+    max: 10,
   },
   {
     id: 1,
     name: '巧克力豆餅乾',
     count: 5,
+    price: 100,
+    max: 10,
   },
   {
     id: 2,
     name: '小老板海苔',
     count: 2,
+    price: 100,
+    max: 10,
   },
   {
     id: 3,
     name: '日式焙茶巧克力酥',
     count: 5,
+    price: 100,
+    max: 10,
   },
   {
     id: 4,
     name: '波浪洋芋片',
     count: 1,
+    price: 100,
+    max: 10,
   },
 ]
 
 function ShoppingCart() {
   const [products, setProducts] = useState(initialProducts)
 
+  // 加總用函式 (註: 也可以用for迴圈，for迴圈寫法在下面)
+  const calcTotalNumber = (arr) => arr.reduce((acc, v, i) => acc + v.count, 0)
+  const calcTotalPrice = (arr) =>
+    arr.reduce((acc, v, i) => acc + v.count * v.price, 0)
+
+  // 計算總數量(數量 累加)
+  // const calcTotalNumber = () => {
+  //   let total = 0
+
+  //   for (let i = 0; i < products.length; i++) {
+  //     total += products[i].count
+  //   }
+
+  //   return total
+  // }
+
+  // // 計算總價(單價x數量 累加)
+  // const calcTotalPrice = () => {
+  //   let total = 0
+
+  //   for (let i = 0; i < products.length; i++) {
+  //     total += products[i].count * products[i].price
+  //   }
+
+  //   return total
+  // }
+
   return (
-    <ul>
-      {products.map((product) => (
-        <li key={product.id}>
-          {product.name} (<b>{product.count}</b>)
-          <button
-            onClick={() => {
-              // 處理數量count屬性的增加
-              const newProducts = products.map((v, i) => {
-                if (v.id === product.id) {
-                  return { ...v, count: v.count + 1 }
-                } else {
-                  return { ...v }
-                }
-              })
-
-              setProducts(newProducts)
-            }}
-          >
-            +
-          </button>
-          <button
-            onClick={() => {
-              //預期: 目前商品數量是1了，再按下去-按鈕，數量會變0 -> 即刪除它
-              if (product.count === 1) {
-                //1, 2
-                const newProducts = products.filter((v, i) => {
-                  return v.id !== product.id
-                })
-
-                //3
-                setProducts(newProducts)
-
-                return //跳出函式，下面的程式碼不會再執行
-              }
-
-              // 處理數量count屬性的減少
-              const newProducts = products.map((v, i) => {
-                if (v.id === product.id) {
-                  return { ...v, count: v.count - 1 }
-                } else {
-                  return { ...v }
-                }
-              })
-
-              setProducts(newProducts)
-            }}
-          >
-            –
-          </button>
-        </li>
-      ))}
-    </ul>
+    <>
+      <Summary
+        totalNumber={calcTotalNumber(products)}
+        totalPrice={calcTotalPrice(products)}
+      />
+      <ShoppingList products={products} setProducts={setProducts} />
+    </>
   )
 }
 
