@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Summary(totalNumber, totalPrice) {
+function Summary({ totalNumber, totalPrice }) {
   return (
     <div>
       <p>總價:{totalPrice}</p>
@@ -8,4 +8,5 @@ function Summary(totalNumber, totalPrice) {
     </div>
   )
 }
+
 export default Summary
