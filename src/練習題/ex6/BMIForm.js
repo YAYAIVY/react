@@ -21,7 +21,57 @@
 import { useState } from 'react'
 
 function BMIForm() {
-  return <div>BMIForm</div>
+  const [myHeight, setMyHeight] = useState(0)
+  const [myWeight, setMyWeight] = useState(0)
+  const [myBMI, setMyBMI] = useState(0)
+
+  return (
+    <>
+      <h1>BMI計算</h1>
+      <label>身高(公分):</label>
+      <input
+        type="number"
+        name="myHeight"
+        value={myHeight === 0 ? '' : myHeight}
+        onChange={(e) => {
+          setMyHeight(Number(e.target.value))
+        }}
+      />
+      <br />
+      <label>體重(公斤)</label>
+      <input
+        type="number"
+        name="myWeight"
+        value={myWeight === 0 ? '' : myWeight}
+        onChange={(e) => {
+          setMyWeight(Number(e.target.value))
+        }}
+      />
+      <button
+        onClick={() => {
+          if (myHeight === 0 || myWeight === 0) {
+            alert('身高或體重為必填')
+            return
+          }
+          const bmi = myWeight / Math.pow(myHeight / 100, 2)
+          setMyBMI(bmi)
+        }}
+      >
+        計算
+      </button>
+      <button
+        onClick={() => {
+          setMyBMI(0)
+          setMyHeight(0)
+          setMyWeight(0)
+        }}
+      >
+        清除
+      </button>
+      <hr />
+      <p>你的BMI值為:{myBMI > 0 ? myBMI.toFixed(1) : ''}</p>
+    </>
+  )
 }
 
 export default BMIForm

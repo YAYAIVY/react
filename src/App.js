@@ -6,7 +6,7 @@
 //import ProductTable from "./練習題/ex1/ProductTable"
 //import List from "./0203/4.updateing-array/List"
 //import Menu from "./練習題/ex2/Menu"
-// import BookList from "./練習題/ex3/BookList"
+//import BookList from "./練習題/ex3/BookList"
 //import ShoppingCart from "./練習題/ex4/shoppingCart"
 //import Counter from './練習題/exi/Counter'
 //import Parent from "./0210/2.prop/Parent"
@@ -14,9 +14,6 @@
 //import TodoApp from './0214/1.todo/TodoApp'
 //import GrandParent from './0214/2.Context/GrandParent'
 //import GrandParent from './0214/3.Context-hook/GrandParent'
-//import HTML5form from './0215/1.form/HTML5form'
-// import IdForm from './0215/2.refs/IdForm'
-// import RefsForm from './0215/2.refs/RefsForm'
 import RegisterForm from './0215/3.form/RegisterForm'
 function App() {
   return (
